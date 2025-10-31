@@ -1,8 +1,6 @@
 inherits_from: default
 
 # Profile configuration for lefant
-# Uncomment and modify to exclude specific inherited files:
-# exclude_inherited_files:
-#   - standards/backend/api/*
-#   - standards/backend/migrations.md
-#   - workflows/implementation/custom-workflow.md
+exclude_inherited_files:
+  - standards/backend/migrations.md
+  - standards/backend/models.md
