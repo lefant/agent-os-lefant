@@ -1,0 +1,4 @@
+inherits_from: lefant
+
+# Profile configuration for altego
+# Add overrides unique to this profile beneath profiles/altego/.
