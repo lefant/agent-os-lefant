@@ -18,13 +18,14 @@ docker compose exec app pnpm run test:run            # All tests once
 docker compose exec app pnpm run test:coverage       # With coverage
 ```
 
-**Benefits**:
-- Consistent environment across development and CI
+**Why Docker is required**:
+- Claude runs in a container without library dependencies installed
+- Ensures consistent environment across development and CI
 - No local dependency installation required
 - Reproducible test runs
 - Isolated test execution
 
-**Alternative**: Direct execution (`pnpm test`) supported for faster iteration during development.
+**Note**: Direct execution (`pnpm test`) only works when dependencies are installed locally, which is typically not the case in Claude's container environment.
 
 ### 2. Parallel CI/CD Execution
 
