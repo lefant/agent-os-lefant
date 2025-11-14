@@ -7,7 +7,7 @@ if ! command -v curl >/dev/null 2>&1; then
 fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 HTML_DIR="${REPO_ROOT}/docs/agent-os/html"
 
 mkdir -p "${HTML_DIR}"
