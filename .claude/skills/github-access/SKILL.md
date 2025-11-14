@@ -263,11 +263,9 @@ curl -L \
   https://api.github.com/repos/OWNER/REPO/commits/COMMIT_SHA
 ```
 
-## Troubleshooting Authentication
+## Verify Your Token
 
-### Test Your Token
-
-Before debugging API issues, verify your token is valid:
+Quick test to verify your token is configured correctly:
 
 ```bash
 # Verify token works and check your identity
@@ -280,43 +278,7 @@ curl -s -L \
 
 **Expected response:** Your GitHub user information in JSON format.
 
-### Common Authentication Errors
-
-| Status Code | Error Message | Likely Cause | Solution |
-|-------------|---------------|--------------|----------|
-| 401 | Bad credentials | Token is invalid, expired, or malformed | Generate a new token or check `$GH_TOKEN` is set correctly |
-| 403 | Forbidden | Token lacks required scopes/permissions | Recreate token with appropriate scopes (e.g., `repo`, `read:org`) |
-| 404 | Not Found | Repository is private and token can't access it | Verify token has access to the repository |
-| 404 | Not Found | Resource doesn't exist | Check OWNER/REPO/PR_NUMBER are correct |
-
-### Authorization Header Troubleshooting
-
-If you encounter authentication issues:
-
-1. **Try the alternative format:** If `token` format fails, try `Bearer`:
-   ```bash
-   -H "Authorization: Bearer $GH_TOKEN"
-   ```
-
-2. **Verify token is exported:**
-   ```bash
-   echo $GH_TOKEN
-   ```
-
-3. **Check token scopes:** Ensure your PAT has required scopes:
-   - `repo` - Full control of private repositories
-   - `public_repo` - Access public repositories
-   - `read:org` - Read org and team membership
-
-4. **Test with a simple endpoint:** Use `/user` endpoint to verify basic authentication works
-
-### Token Best Practices
-
-- **Never commit tokens** to version control
-- **Use environment variables** for token storage
-- **Set appropriate scopes** - only grant permissions needed
-- **Rotate tokens regularly** - especially if exposed
-- **Use fine-grained tokens** when possible for better security
+**If you encounter authentication errors,** see the detailed [troubleshooting guide](references/troubleshooting.md) for error codes, token scoping issues, and debugging steps.
 
 ## Response Formats
 
@@ -371,6 +333,11 @@ curl -s -L \
 
 ## Additional Resources
 
+### Local References
+- [Comprehensive curl API Reference](references/curl-api.md) - Extensive examples for all GitHub API operations
+- [Troubleshooting Guide](references/troubleshooting.md) - Detailed authentication debugging and error handling
+
+### GitHub Documentation
 - [GitHub REST API Documentation](https://docs.github.com/en/rest)
 - [GitHub API Best Practices](https://docs.github.com/en/rest/guides/best-practices-for-using-the-rest-api)
 - [Personal Access Token Creation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
