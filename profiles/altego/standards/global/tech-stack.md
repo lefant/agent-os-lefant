@@ -1,7 +1,5 @@
 ## Tech stack
 
-Define your technical stack below. This serves as a reference for all team members and helps maintain consistency across the project.
-
 ### Framework & Runtime
 - **Application Framework:** Next.js, fastapi
 - **Language/Runtime:** Typescript, Python
