@@ -1,41 +1,27 @@
-<img width="1280" height="640" alt="agent-os-og" src="https://github.com/user-attachments/assets/f70671a2-66e8-4c80-8998-d4318af55d10" />
+## Agent OS config for lefant
 
-## Your system for spec-driven agentic development.
+### Repository source
 
-[Agent OS](https://buildermethods.com/agent-os) transforms AI coding agents from confused interns into productive developers. With structured workflows that capture your standards, your stack, and the unique details of your codebase, Agent OS gives your agents the specs they need to ship quality code on the first try—not the fifth.
+Upstream Agent OS lives at <https://github.com/buildermethods/agent-os>. This repo holds profiles, standards, and Claude Skills documented below.
 
-Use it with:
+### Documentation snapshots
 
-✅ Claude Code, Cursor, or any other AI coding tool.
+`docs/agent-os/` keeps our local mirror of buildermethods.com plus curated summaries. See `docs/agent-os/README.md` for the file layout and how to refresh HTML snapshots with `docs/agent-os/update-agent-os-docs.sh`.
 
-✅ New products or established codebases.
+### Local profiles
 
-✅ Big features, small fixes, or anything in between.
+- **default** – Upstream baseline left untouched so we can pull updates cleanly.
+- **lefant** – Inherits from `default`, drops unused backend migration/model standards, and adds global conventions for our services.
+- **altego** – Inherits from `lefant` and overrides `profiles/altego/standards/global/tech-stack.md` to keep the Altego stack locked down.
+- **memory** – Standalone profile (`inherits_from: false`) for Obsidian/PKM workflows so experiments stay isolated from product code.
 
-✅ Any language or framework.
+Switch profiles per project with `~/agent-os/scripts/project-install.sh --profile <name>` once your base install contains the latest profile edits.
 
----
+### Standards
 
-### Documentation & Installation
+Standards live under each profile’s `standards/` subtree. Keep files modular (global/backend/frontend/testing) so Agent OS can inject them selectively or convert them into Claude Code Skills. Today the customizations focus on Lefant/Altego global practices plus Altego’s `tech-stack.md`.
 
-Docs, installation, usage, & best practices 👉 [It's all here](https://buildermethods.com/agent-os)
+### Extra skills
 
----
+We include an additional Claude Skill, `github-access`, captured in `docs/agent-os/summaries/github-access.md`. Bundle it alongside the standards Skills so Claude can pull GitHub issues/PRs from whitelisted repositories without manual copy/paste.
 
-### Follow updates & releases
-
-Read the [changelog](CHANGELOG.md)
-
-[Subscribe to be notified of major new releases of Agent OS](https://buildermethods.com/agent-os)
-
----
-
-### Created by Brian Casel @ Builder Methods
-
-Created by Brian Casel, the creator of [Builder Methods](https://buildermethods.com), where Brian helps professional software developers and teams build with AI.
-
-Get Brian's free resources on building with AI:
-- [Builder Briefing newsletter](https://buildermethods.com)
-- [YouTube](https://youtube.com/@briancasel)
-
-Join [Builder Methods Pro](https://buildermethods.com/pro) for official support and connect with our community of AI-first builders:

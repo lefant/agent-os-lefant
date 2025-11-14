@@ -1,10 +1,11 @@
-# Agent OS Configuration Docs
+# Agent OS Docs Snapshot
 
-This folder contains a local, self-contained snapshot of the Agent OS public documentation that matters for configuring agents inside this repo.
+This folder stores the local documentation mirror (HTML + summaries). For general repository guidance, see the top-level `README.md`.
 
-- `html/` keeps the raw HTML downloaded from buildermethods.com so you can audit upstream changes.
-- `summaries/` holds hand-written Markdown breakdowns of each topic tailored to the workflows in this repository.
-- `../../scripts/update-agent-os-docs.sh` refreshes the HTML snapshots (see script section below).
+## Snapshots & summaries
+- `html/` stores verbatim exports from <https://buildermethods.com/agent-os> so we can diff upstream changes offline.
+- `summaries/` holds our curated Markdown explanations for each topic, plus local-only additions such as the GitHub access Skill.
+- `update-agent-os-docs.sh` (in this directory) re-fetches every HTML page listed below.
 
 | Topic | Summary | Source HTML |
 | --- | --- | --- |
@@ -18,13 +19,14 @@ This folder contains a local, self-contained snapshot of the Agent OS public doc
 | Verification | [summaries/verification.md](summaries/verification.md) | [html/verification.html](html/verification.html) |
 | Visual workflows | [summaries/visuals.md](summaries/visuals.md) | [html/visuals.html](html/visuals.html) |
 | Workflow internals | [summaries/workflows.md](summaries/workflows.md) | [html/workflows.html](html/workflows.html) |
+| GitHub access Skill | [summaries/github-access.md](summaries/github-access.md) | local-only |
 
 ## Updating the snapshots
 
 Run:
 
 ```bash
-scripts/update-agent-os-docs.sh
+docs/agent-os/update-agent-os-docs.sh
 ```
 
 The script re-fetches every HTML page listed above and overwrites the copies in `docs/agent-os/html/`. Review the diffs, then adjust the Markdown summaries if upstream docs change.
