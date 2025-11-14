@@ -6,29 +6,7 @@ This document establishes the quality assurance and continuous integration princ
 
 ## Core Principles
 
-### 1. Test Pyramid Architecture
-
-Testing should follow a layered approach with appropriate distribution:
-
-- **Unit Tests** (70%): Fast, isolated tests with no external dependencies
-  - No environment variables required
-  - Run in seconds
-  - Test individual functions and components
-  - Always run first (including on external PRs)
-
-- **Integration Tests** (20%): Tests with external service interaction
-  - Require environment variables and secrets
-  - Run in minutes
-  - Test module interactions and API integrations
-  - Conditional execution based on available secrets
-
-- **E2E Tests** (10%): Full workflow validation
-  - Browser-based with Playwright
-  - Run in minutes
-  - Test complete user journeys
-  - Run after unit tests pass
-
-### 2. Docker-First Testing
+### 1. Docker-First Testing
 
 All tests should be executable via Docker Compose:
 
@@ -48,7 +26,7 @@ docker compose exec app pnpm run test:coverage       # With coverage
 
 **Alternative**: Direct execution (`pnpm test`) supported for faster iteration during development.
 
-### 3. Parallel CI/CD Execution
+### 2. Parallel CI/CD Execution
 
 CI workflows should maximize parallelization:
 
@@ -71,7 +49,7 @@ CI workflows should maximize parallelization:
 - Docker builds happen once and reused
 - Coverage merging happens after all tests complete
 
-### 4. Environment-Based Test Configuration
+### 3. Environment-Based Test Configuration
 
 Test configuration should use environment variables, not config files:
 
@@ -83,7 +61,7 @@ Test configuration should use environment variables, not config files:
 
 **Validation**: Run `pnpm run validate-test-setup` before integration tests to verify configuration.
 
-### 5. Import Path Conventions
+### 4. Import Path Conventions
 
 Code imports should follow consistent patterns based on test type:
 
@@ -108,7 +86,7 @@ import { TokenType } from '@/lib/types/token'
 
 **Rationale**: Path aliases make integration tests resilient to refactoring while keeping unit tests focused on their module.
 
-### 6. Comprehensive Coverage Tracking
+### 5. Comprehensive Coverage Tracking
 
 Coverage should be tracked at multiple levels:
 
@@ -124,7 +102,7 @@ Coverage should be tracked at multiple levels:
 4. HTML report generated for browsing
 5. Summary displayed in workflow output
 
-### 7. Test Organization by Project
+### 6. Test Organization by Project
 
 Vitest should use projects to separate test types:
 
@@ -160,7 +138,7 @@ export default defineConfig({
 - Different timeouts based on test type
 - Clear test categorization
 
-### 8. Conditional Test Execution
+### 7. Conditional Test Execution
 
 Tests should handle missing secrets gracefully:
 
@@ -182,7 +160,7 @@ integration-tests:
   # or: if: github.event_name == 'workflow_dispatch'
 ```
 
-### 9. Test Cleanup and Isolation
+### 8. Test Cleanup and Isolation
 
 Integration tests should maintain clean state:
 
@@ -206,7 +184,7 @@ afterAll(async () => {
 });
 ```
 
-### 10. Fail-Fast Prerequisites
+### 9. Fail-Fast Prerequisites
 
 Critical prerequisites should be validated before running expensive tests:
 
