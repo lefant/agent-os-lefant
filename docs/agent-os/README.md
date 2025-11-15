@@ -20,6 +20,7 @@ This folder stores the local documentation mirror (HTML + summaries). For genera
 | Visual workflows | [summaries/visuals.md](summaries/visuals.md) | [html/visuals.html](html/visuals.html) |
 | Workflow internals | [summaries/workflows.md](summaries/workflows.md) | [html/workflows.html](html/workflows.html) |
 | GitHub access Skill | [summaries/github-access.md](summaries/github-access.md) | local-only |
+| Whole-site markdown snapshot | [summaries/llms.md](summaries/llms.md) | local export |
 
 ## Updating the snapshots
 
