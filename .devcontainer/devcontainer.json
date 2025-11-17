@@ -1,0 +1,14 @@
+{
+  "name": "devcontainer",
+  "dockerComposeFile": ["../compose.yaml"],
+  "service": "devcontainer",
+  "runServices": ["devcontainer"],
+  "workspaceFolder": "/workspace",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "anthropic.claude-code"
+      ]
+    }
+  }
+}
