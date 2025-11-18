@@ -10,7 +10,7 @@ This configuration uses the **RPI** (Research, Plan, Implement) workflow for str
 - **Plan** (`/create_plan`): Design the implementation strategy
 - **Implement** (`/implement_plan`): Execute the plan with verification
 
-Agents and commands are organized under `.claude/agents/rpi/` and `.claude/commands/rpi/` to make this workflow explicit.
+Agents and commands are organized under `claudecontainer/agents/rpi/` and `claudecontainer/commands/rpi/` to make this workflow explicit.
 
 ## Quick Start
 
@@ -19,13 +19,13 @@ Agents and commands are organized under `.claude/agents/rpi/` and `.claude/comma
 Add this repository as a git subtree:
 
 ```bash
-git subtree add --prefix .claude git@github.com:lefant/claudecontainer.git master --squash
+git subtree add --prefix claudecontainer git@github.com:lefant/claudecontainer.git master --squash
 ```
 
 Or use the bootstrap script:
 
 ```bash
-./.claude/claudecontainer/scripts/bootstrap-project.sh
+./claudecontainer/scripts/bootstrap-project.sh
 ```
 
 ### Global Configuration
@@ -33,7 +33,7 @@ Or use the bootstrap script:
 Create `~/.env.claudecontainer` with your settings:
 
 ```bash
-CLAUDECONTAINER_PATH=./.claude
+CLAUDECONTAINER_PATH=./claudecontainer
 TZ=Europe/Stockholm
 ```
 
@@ -41,9 +41,9 @@ The bootstrap script creates this automatically if it doesn't exist.
 
 ## Structure
 
-1. **`.claude/`** - This repo as git subtree
+1. **`claudecontainer/`** - This repo as git subtree
    - Shared configuration (agents, commands, settings.json)
-   - Infrastructure in `claudecontainer/` subdirectory
+   - Infrastructure (compose.shared.yaml, Dockerfile, scripts)
 2. **`compose.yaml`** - Minimal project compose file:
    ```yaml
    name: your-project
@@ -52,7 +52,7 @@ The bootstrap script creates this automatically if it doesn't exist.
      - ~/.env.claudecontainer
 
    include:
-     - ./.claude/claudecontainer/compose.shared.yaml
+     - ./claudecontainer/compose.shared.yaml
    ```
 3. **`claudecontainer-user-dot-claude/`** - User home .claude directory (gitignored)
 4. **`.devcontainer/devcontainer.json`** - VS Code integration
@@ -61,12 +61,12 @@ The bootstrap script creates this automatically if it doesn't exist.
 
 Pull latest changes from this repo:
 ```bash
-git subtree pull --prefix .claude git@github.com:lefant/claudecontainer.git master --squash
+git subtree pull --prefix claudecontainer git@github.com:lefant/claudecontainer.git master --squash
 ```
 
 Push changes back (if you're a contributor):
 ```bash
-git subtree push --prefix .claude git@github.com:lefant/claudecontainer.git master
+git subtree push --prefix claudecontainer git@github.com:lefant/claudecontainer.git master
 ```
 
 ## Usage
