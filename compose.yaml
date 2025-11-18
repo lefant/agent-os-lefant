@@ -1,2 +1,2 @@
 include:
-  - ./.claude/claudecontainer/compose.shared.yaml
+  - ./claudecontainer/compose.shared.yaml
