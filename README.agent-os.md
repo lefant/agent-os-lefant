@@ -13,7 +13,7 @@ These files are generated from the base installation at:
 
 To install or update Agent OS for this project, run:
 ```bash
-./.claude/claudecontainer/scripts/agent-os_project-install.sh
+./claudecontainer/scripts/agent-os_project-install.sh
 ```
 
 This script:

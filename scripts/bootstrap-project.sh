@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Bootstrap a new project to use .claude/claudecontainer shared configuration
+# Bootstrap a new project to use claudecontainer shared configuration
 
 set -e
 
@@ -10,7 +10,7 @@ if [ ! -f ~/.env.claudecontainer ]; then
     echo "Creating ~/.env.claudecontainer (global configuration)..."
     cat > ~/.env.claudecontainer <<EOF
 # Global ClaudeContainer Configuration
-CLAUDECONTAINER_PATH=./.claude
+CLAUDECONTAINER_PATH=./claudecontainer
 TZ=Europe/Stockholm
 
 # add your own below
@@ -26,13 +26,13 @@ else
 fi
 echo
 
-# 2. Add .claude as subtree
-if [ ! -d .claude ]; then
-    echo "Adding .claude via git subtree..."
-    git subtree add --prefix .claude "$CLAUDECONTAINER_REPO" master --squash
-    echo "✓ Added .claude"
+# 2. Add claudecontainer as subtree
+if [ ! -d claudecontainer ]; then
+    echo "Adding claudecontainer via git subtree..."
+    git subtree add --prefix claudecontainer "$CLAUDECONTAINER_REPO" master --squash
+    echo "✓ Added claudecontainer"
 else
-    echo "✓ .claude already exists"
+    echo "✓ claudecontainer already exists"
 fi
 echo
 
@@ -41,7 +41,7 @@ if [ ! -f compose.yaml ]; then
     echo "Creating compose.yaml..."
     cat > compose.yaml <<EOF
 include:
-  - ./.claude/claudecontainer/compose.shared.yaml
+  - ./claudecontainer/compose.shared.yaml
 EOF
     echo "✓ Created compose.yaml"
 fi
@@ -74,7 +74,7 @@ mkdir -p claudecontainer-user-dot-claude
 echo '*' > claudecontainer-user-dot-claude/.gitignore
 if [ ! -f claudecontainer-user-dot-claude/.claude.json ]; then
     echo "Initializing claudecontainer-user-dot-claude/.claude.json..."
-    cp .claude/claudecontainer/dot-claude.json.template claudecontainer-user-dot-claude/.claude.json
+    cp claudecontainer/dot-claude.json.template claudecontainer-user-dot-claude/.claude.json
     echo "✓ Initialized local Claude state"
 fi
 
